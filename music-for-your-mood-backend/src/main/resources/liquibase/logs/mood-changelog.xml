@@ -12,7 +12,7 @@
                 <constraints primaryKey="true" />
             </column>
             <column name="COVER_IMAGE" type="BLOB">
-                <constraints nullable="false" />
+<!--                <constraints nullable="false" />-->
             </column>
         </createTable>
     </changeSet>

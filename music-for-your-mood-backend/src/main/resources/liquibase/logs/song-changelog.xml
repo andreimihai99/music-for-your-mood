@@ -23,12 +23,25 @@
             <column name="LISTEN_LINK" type="VARCHAR(255)">
                 <constraints nullable="false" />
             </column>
-            <column name="CATEGORY_FK" type="BIGINT">
+            <column name="MOOD_FK" type="BIGINT">
+                <constraints nullable="false" />
+            </column>
+            <column name="GENRE_FK" type="BIGINT">
                 <constraints nullable="false" />
             </column>
 
         </createTable>
 
+    </changeSet>
+
+    <changeSet id="02" author="andreimihai">
+        <addForeignKeyConstraint baseTableName="SONG" baseColumnNames="MOOD_FK" constraintName="moodIfFk"
+                                 referencedTableName="MOOD"
+                                 referencedColumnNames="ID" />
+
+        <addForeignKeyConstraint baseTableName="SONG" baseColumnNames="GENRE_FK" constraintName="genreIdFk"
+                                 referencedTableName="GENRE"
+                                 referencedColumnNames="ID" />
     </changeSet>
 
 </databaseChangeLog>
