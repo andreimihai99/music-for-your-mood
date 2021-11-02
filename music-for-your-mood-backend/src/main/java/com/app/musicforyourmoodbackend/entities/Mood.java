@@ -1,9 +1,8 @@
-package com.app.musicforyourmoodbackend.Entities;
+package com.app.musicforyourmoodbackend.entities;
 
 import lombok.Data;
 
 import javax.persistence.*;
-import java.sql.Blob;
 
 @Entity
 @Table(name = "mood")
@@ -20,5 +19,13 @@ public class Mood {
 
     @Column(name = "cover_image", columnDefinition = "TEXT")
     @Lob
-    private String cover_image;
+    private String coverImage;
+
+    public Mood() {}
+
+    public Mood(Long id, String name, String coverImage) {
+        this.id = id;
+        this.name = name;
+        this.coverImage = coverImage;
+    }
 }

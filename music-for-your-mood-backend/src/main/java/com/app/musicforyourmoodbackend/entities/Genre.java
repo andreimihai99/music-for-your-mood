@@ -1,4 +1,4 @@
-package com.app.musicforyourmoodbackend.Entities;
+package com.app.musicforyourmoodbackend.entities;
 
 import lombok.Data;
 
@@ -16,4 +16,11 @@ public class Genre {
 
     @Column(name = "name")
     private String name;
+
+    public Genre() {}
+
+    public Genre(Long id, String name) {
+        this.id = id;
+        this.name = name;
+    }
 }

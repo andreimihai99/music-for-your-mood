@@ -1,23 +1,19 @@
-package com.app.musicforyourmoodbackend.Entities;
+package com.app.musicforyourmoodbackend.entities;
 
-import com.sun.istack.NotNull;
-import liquibase.pro.packaged.N;
 import lombok.Data;
 
 import javax.persistence.*;
-import java.util.List;
 
 @Entity
-@Table(name = "user")
+@Table(name = "listener")
 @Data
-public class User {
+public class Listener {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private Long id;
 
-    @NotNull
     @Column(name = "forename")
     private String forename;
 
@@ -33,7 +29,14 @@ public class User {
     @Column(name = "is_admin")
     private Boolean isAdmin;
 
-    @OneToMany(fetch = FetchType.LAZY)
-    @JoinColumn(name = "liked_song_fk", referencedColumnName = "id", nullable = false)
-    private List<Song> likedSongs;
+    public Listener() {}
+
+    public Listener(Long id, String forename, String surname, String password, String email, Boolean isAdmin) {
+        this.id = id;
+        this.forename = forename;
+        this.surname = surname;
+        this.password = password;
+        this.email = email;
+        this.isAdmin = isAdmin;
+    }
 }
