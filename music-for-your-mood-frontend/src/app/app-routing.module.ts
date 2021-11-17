@@ -1,19 +1,22 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomepageComponent } from './components/homepage/homepage.component';
+import { LoginComponent } from './components/login/login.component';
+import { RegisterComponent } from './components/register/register.component';
 import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
   {
     path: 'login',
-    loadChildren: () => import('./components/login/login.module').then(m => m.LoginModule)
+    component: LoginComponent
   },
   {
     path: 'register',
-    loadChildren: () => import('./components/register/register.module').then(m => m.RegisterModule)
+    component: RegisterComponent
   },
   {
     path: 'homepage',
-    loadChildren: () => import('./components/homepage/homepage.module').then(m => m.HomepageModule)
+    component: HomepageComponent
   },
   {
     path: '**',
