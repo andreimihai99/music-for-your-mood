@@ -14,6 +14,8 @@ export class LoginComponent implements OnInit {
 
   public dataSource: Listener[] = [];
   public listener?: Listener;
+  public passwordError: string = "aa";
+  public pError: boolean = true;
 
   constructor(private loginService: LoginService,
     private formBuilder: FormBuilder,
@@ -34,10 +36,15 @@ export class LoginComponent implements OnInit {
       data => {
         this.listener = data;
         if(this.listener.password === this.loginFormGroup.value.password) {
-          console.log('corect');
-          this.router.navigate(['homepage']);
+          if(this.listener.isAdmin == false) {
+            this.router.navigate(['homepage']);
+          } else {
+            this.router.navigate(['homepage-admin']);
+          }
         } else {
-          console.log("gresit");
+          this.pError = true;
+          this.loginFormGroup.controls['password'].setErrors({'pError':true});
+          this.passwordError = "Wrong password! Try again.";
         }
       }, 
       err => {
@@ -48,6 +55,10 @@ export class LoginComponent implements OnInit {
 
   goToSignUp(): void {
     this.router.navigate(["register"]);
+  }
+
+  getPasswordErrorMessage(): string {
+    return "eroare";
   }
 }
 

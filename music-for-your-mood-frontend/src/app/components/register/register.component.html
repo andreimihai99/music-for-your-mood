@@ -1,32 +1,25 @@
-<div>
-    <h1>Music for your mood</h1>
+<div id="register">
+    <img src="https://musicforyourmoodca.files.wordpress.com/2020/05/music-for-your-mood-logo.png" style="width: 300px; height: 300px;">
     <h2>Registration</h2>
-    
-    <!-- <form #listenerForm="ngForm" (ngSubmit)="onSubmit(listenerFormGroup)"> -->
-        <!-- <mat-form-field appearance="fill">
-            <mat-label>Forename</mat-label>
-            <input matInput placeholder="Forename" formControlName="forename" required>
-            <mat-error>Forename is required</mat-error>
-        </mat-form-field>
-
-        <mat-form-field appearance="fill">
-            <mat-label>Enter surname</mat-label>
-            <input matInput placeholder="Surname" formControlName="surname" required>
-            <mat-error>Surname is required</mat-error>
-        </mat-form-field>
-  
-        <mat-form-field appearance="fill">
-            <mat-label>Enter email</mat-label>
-            <input matInput type="email" placeholder="name@example.com" formControlName="email" required>
-            <mat-error>Email is required</mat-error>
-         </mat-form-field>
-  
-        <mat-form-field appearance="fill">
-            <mat-label>Enter password</mat-label>
-            <input matInput type="password" placeholder="Password" formControlName="password">
-            <mat-error>Password is required</mat-error>
-        </mat-form-field> -->
-
-        <button type="submit">Register</button>
+    <form [formGroup]="registerFormGroup" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>forename</mat-label>
+            <input name="forename" formControlName="forename" matInput placeholder="forename" required>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>surname</mat-label>
+            <input name="surname" formControlName="surname" matInput placeholder="surname" required>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>email</mat-label>
+            <input type="email" name="email" formControlName="email" matInput placeholder="email" required>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>password</mat-label>
+            <input type="password" name="password" formControlName="password" matInput placeholder="password" required>
+        </mat-form-field><br>
+        
+        <button [disabled]="registerFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="primary">Submit</button>
+    </form>
     
 </div>

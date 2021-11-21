@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { HomepageAdminComponent } from './components/homepage-admin/homepage-admin.component';
+import { HomepageAdminModule } from './components/homepage-admin/homepage-admin.module';
 import { HomepageComponent } from './components/homepage/homepage.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
@@ -17,6 +19,10 @@ const routes: Routes = [
   {
     path: 'homepage',
     component: HomepageComponent
+  },
+  {
+    path: 'homepage-admin',
+    component: HomepageAdminComponent
   },
   {
     path: '**',

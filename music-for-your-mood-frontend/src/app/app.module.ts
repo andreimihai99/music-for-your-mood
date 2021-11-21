@@ -12,10 +12,12 @@ import { MainComponent } from './components/main/main.component';
 import { MainModule } from './components/main/main.module';
 import { LoginModule } from './components/login/login.module';
 import { RegisterModule } from './components/register/register.module';
+import { HomepageAdminComponent } from './components/homepage-admin/homepage-admin.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomepageAdminComponent
   ],
   imports: [
     BrowserModule,

@@ -12,7 +12,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class RegisterComponent implements OnInit {
 
-  listenerFormGroup = this.formBuilder.group({
+
+
+  registerFormGroup = this.formBuilder.group({
     forename: ['', Validators.required],
     surname: ['', Validators.required],
     email: ['', Validators.required],
@@ -27,27 +29,24 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit(listenerForm: any): void {
-    this.createListener(listenerForm);
-  }
+  onSubmit(): void {
+    if(this.registerFormGroup.status === "VALID") {
+      let listener = new Listener();
 
-  createListener(listenerForm: any) {
-    const listener = this.listenerFormGroup.value;
+      listener = {
+        forename: this.registerFormGroup.value.forename,
+        surname: this.registerFormGroup.value.surname,
+        email: this.registerFormGroup.value.password,
+        password: this.registerFormGroup.value.email,
+        isAdmin: false
+      }
 
-    const lstnr: Listener = {
-      forename: listener.forename,
-      surname: listener.surname,
-      email: listener.email,
-      password: listener.password,
-      isAdmin: listener.isAdmin
+      this.registerService.addListener(listener).subscribe(
+        data => {
+          this.router.navigate(['homepage']);
+        }
+      )
     }
-
-    this.registerService.addListener(lstnr).subscribe(
-      data => {
-        this.router.navigate(['homepage']);
-      },
-      err => console.log(err)
-    );
   }
 
 }
