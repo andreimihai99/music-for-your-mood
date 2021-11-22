@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 
 public interface ListenerRepository extends JpaRepository<Listener, Long> {
-
+    Listener findByEmail(String email);
 }

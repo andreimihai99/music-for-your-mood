@@ -14,7 +14,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@CrossOrigin
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
 @AllArgsConstructor
 @RequestMapping("/listeners")
@@ -46,6 +46,21 @@ public class ListenerController {
                 return ResponseEntity.ok(listener.get());
             } else
                 return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/get-by-email/{email}")
+    public ResponseEntity<Listener> getListenerByEmail(@PathVariable String email) {
+        try {
+            Optional<Listener> listener = Optional.ofNullable(listenerRepository.findByEmail(email));
+            if(listener.isPresent()) {
+                return ResponseEntity.ok(listener.get());
+            } else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+
         }
         catch(Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);

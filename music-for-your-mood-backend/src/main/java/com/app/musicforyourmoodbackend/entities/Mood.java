@@ -1,5 +1,6 @@
 package com.app.musicforyourmoodbackend.entities;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -23,6 +24,7 @@ public class Mood {
 
     public Mood() {}
 
+    @JsonCreator
     public Mood(Long id, String name, String coverImage) {
         this.id = id;
         this.name = name;
