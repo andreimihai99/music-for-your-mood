@@ -1,1 +1,41 @@
-<p>homepage-admin works!</p>
+<p>hello, admin</p>
+<div>
+    <h1>add song form</h1>
+    <form [formGroup]="addSongFormGroup" (ngSubmit)="onSubmit()">
+        <mat-form-field>
+            <mat-label>song title</mat-label>
+            <input name="title" formControlName="title" matInput placeholder="title" required>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>artist</mat-label>
+            <input name="artist" formControlName="artist" matInput placeholder="artist" required>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>duration</mat-label>
+            <input name="duration" formControlName="duration" matInput placeholder="duration" required>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>listen link</mat-label>
+            <input name="listen_link" formControlName="listen_link" matInput placeholder="listen_link" required>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>mood</mat-label>
+            <mat-select [(value)]="selectedMood" formControlName="mood" required>
+                <mat-option *ngFor="let mood of moods" [value]="mood">
+                    {{mood}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field><br>
+        <mat-form-field>
+            <mat-label>genre</mat-label>
+            <mat-select [(value)]="selectedGenre" formControlName="genre" required>
+                <mat-option *ngFor="let genre of genres" [value]="genre">
+                    {{genre}}
+                </mat-option>
+            </mat-select>
+        </mat-form-field><br>
+
+        
+        <button [disabled]="addSongFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="primary">add song</button>
+    </form>
+</div>

@@ -14,7 +14,7 @@ export class LoginComponent implements OnInit {
 
   public dataSource: Listener[] = [];
   public listener?: Listener;
-  public passwordError: string = "aa";
+  public passwordError: string = "";
   public pError: boolean = true;
 
   constructor(private loginService: LoginService,

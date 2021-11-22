@@ -13,11 +13,12 @@ import { MainModule } from './components/main/main.module';
 import { LoginModule } from './components/login/login.module';
 import { RegisterModule } from './components/register/register.module';
 import { HomepageAdminComponent } from './components/homepage-admin/homepage-admin.component';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
   declarations: [
-    AppComponent,
-    HomepageAdminComponent
+    AppComponent
   ],
   imports: [
     BrowserModule,
@@ -25,7 +26,8 @@ import { HomepageAdminComponent } from './components/homepage-admin/homepage-adm
     BrowserAnimationsModule,
     FormsModule,
     LoginModule,
-    RegisterModule
+    RegisterModule,
+    MatSelectModule
   ],
   providers: [],
   bootstrap: [AppComponent]
