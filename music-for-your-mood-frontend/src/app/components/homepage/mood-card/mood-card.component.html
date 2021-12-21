@@ -1,0 +1,15 @@
+<mat-card class="mood-card">
+    <mat-card-header>
+      <mat-card-title>{{mood?.name}}</mat-card-title>
+    </mat-card-header>
+    <img mat-card-image  style="max-width: 200; max-height: 200px;">
+    <!-- src={{mood.coverImage}} -->
+    <mat-card-content>
+      <p>
+        <!-- for when you're feeling beyond this world -->
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <a routerLink="songs"><button type="button" mat-raised-button color="primary" (click)="goToSongs()">check out songs</button></a>
+    </mat-card-actions>
+</mat-card>

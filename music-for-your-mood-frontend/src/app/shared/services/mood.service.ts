@@ -22,8 +22,23 @@ export class MoodService {
     return this.http.get<Mood[]>(path);
   }
 
-  public addGenre(mood: Mood): Observable<any> {
+  public findById(id: number): Observable<Mood> {
+    const path = `${this.ENVIRONMENT}/moods/get-mood/${id}`
+    return this.http.get<Mood>(path);
+  }
+
+  public findByName(name: string): Observable<Mood> {
+    const path = `${this.ENVIRONMENT}/moods/get-mood-name/${name}`
+    return this.http.get<Mood>(path);
+  }
+
+  public addMood(mood: Mood): Observable<any> {
     const path = `${this.ENVIRONMENT}/moods/add-mood`
     return this.http.post<Mood>(path, mood);
   } 
+
+  public deleteMood(id: number): Observable<any> {
+    const path = `${this.ENVIRONMENT}/moods/delete-mood/${id}`;
+    return this.http.delete<Mood>(path);
+  }
 }

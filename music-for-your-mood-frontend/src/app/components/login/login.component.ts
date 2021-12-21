@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
         } else {
           this.pError = true;
           this.loginFormGroup.controls['password'].setErrors({'pError':true});
-          this.passwordError = "Wrong password! Try again.";
+          this.passwordError = "Wrong password or email! Try again.";
         }
       }, 
       err => {

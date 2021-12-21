@@ -1,0 +1,36 @@
+<p>here are all the songs for your {{name}} mood</p>
+
+<div class="scrollable-table" fxLayout="row wrap" fxLayoutGap="16px grid">
+    <table mat-table [dataSource]="dataSourceUpdated" matSort>
+
+      <!-- Forname Column -->
+      <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> title </th>
+        <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+      </ng-container>
+  
+      <!-- Surname Column -->
+      <ng-container matColumnDef="artist">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> artist </th>
+        <td mat-cell *matCellDef="let element"> {{element.artist}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="duration">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> duration </th>
+        <td mat-cell *matCellDef="let element"> {{element.duration}} </td>
+      </ng-container>
+
+      <ng-container matColumnDef="link">
+        <th mat-header-cell *matHeaderCellDef> listen </th>
+        <td mat-cell *matCellDef="let element" class="action_btns"> 
+          <a href="{{element.listenLink}}">
+            <img src="https://www.pngrepo.com/png/306775/512/spotify.png" style="max-width: 20px; max-height: 20px;">
+              <!-- <mat-icon>play_circle_filled</mat-icon> -->
+            </a>
+        </td>
+      </ng-container>
+  
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+  </div>

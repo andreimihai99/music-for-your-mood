@@ -21,8 +21,24 @@ export class SongService {
     return this.http.get<Song[]>(path);
   }
 
+  public findSongByTitleAndArtist(title: string, artist: string): Observable<any> {
+    const path = `${this.ENVIRONMENT}/songs/get-song-title-artist/${title}/${artist}`;
+    return this.http.get<Song>(path);
+  }
+
+  public findAllByMoodId(id: number): Observable<Song[]> {
+    const path = `${this.ENVIRONMENT}/songs/get-all-by-mood-id/${id}`;
+    return this.http.get<Song[]>(path);
+  }
+
   public addSong(song: Song): Observable<any> {
     const path = `${this.ENVIRONMENT}/songs/add-song`
     return this.http.post<Song>(path, song);
   } 
+
+  public deleteSong(id: number): Observable<any> {
+    const path = `${this.ENVIRONMENT}/songs/delete-song/${id}`;
+    return this.http.delete<Song>(path);
+  }
+
 }

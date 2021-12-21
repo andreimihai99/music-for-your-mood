@@ -1,41 +1,195 @@
-<p>hello, admin</p>
-<div>
-    <h1>add song form</h1>
-    <form [formGroup]="addSongFormGroup" (ngSubmit)="onSubmit()">
-        <mat-form-field>
-            <mat-label>song title</mat-label>
-            <input name="title" formControlName="title" matInput placeholder="title" required>
-        </mat-form-field><br>
-        <mat-form-field>
-            <mat-label>artist</mat-label>
-            <input name="artist" formControlName="artist" matInput placeholder="artist" required>
-        </mat-form-field><br>
-        <mat-form-field>
-            <mat-label>duration</mat-label>
-            <input name="duration" formControlName="duration" matInput placeholder="duration" required>
-        </mat-form-field><br>
-        <mat-form-field>
-            <mat-label>listen link</mat-label>
-            <input name="listen_link" formControlName="listen_link" matInput placeholder="listen_link" required>
-        </mat-form-field><br>
-        <mat-form-field>
-            <mat-label>mood</mat-label>
-            <mat-select [(value)]="selectedMood" formControlName="mood" required>
-                <mat-option *ngFor="let mood of moods" [value]="mood">
-                    {{mood}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field><br>
-        <mat-form-field>
-            <mat-label>genre</mat-label>
-            <mat-select [(value)]="selectedGenre" formControlName="genre" required>
-                <mat-option *ngFor="let genre of genres" [value]="genre">
-                    {{genre}}
-                </mat-option>
-            </mat-select>
-        </mat-form-field><br>
+<img src="https://musicforyourmoodca.files.wordpress.com/2020/05/music-for-your-mood-logo.png" style="width: 100px; height: 100px; text-align: center;">
 
+<h1 style="text-align: center;">hello, admin</h1>
+<div class="main">
+  <mat-drawer-container class="example-container" autosize>
+    <mat-drawer #drawer class="example-sidenav" mode="side">
+      <button mat-button color="primary">Sign out</button><br>
+      <button mat-raised-button color="primary">Something</button>
+     
+    </mat-drawer>
+  
+    <div class="example-sidenav-content">
+      <button type="button" mat-button (click)="drawer.toggle()">
+        <mat-icon>menu</mat-icon>
+      </button>
+    </div>
+
+    <mat-accordion>
+      <mat-expansion-panel hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            add song
+          </mat-panel-title>
+          <mat-panel-description>
+            touch here to add a song
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+          <form [formGroup]="addSongFormGroup" (ngSubmit)="onSubmit()">
+              <mat-form-field>
+                  <mat-label>song title</mat-label>
+                  <input name="title" formControlName="title" matInput placeholder="title" required>
+              </mat-form-field><br>
+              <mat-form-field>
+                  <mat-label>artist</mat-label>
+                  <input name="artist" formControlName="artist" matInput placeholder="artist" required>
+              </mat-form-field><br>
+              <mat-form-field>
+                  <mat-label>duration</mat-label>
+                  <input name="duration" formControlName="duration" matInput placeholder="duration" required>
+              </mat-form-field><br>
+              <mat-form-field>
+                  <mat-label>listen link</mat-label>
+                  <input name="listen_link" formControlName="listen_link" matInput placeholder="listen_link" required>
+              </mat-form-field><br>
+              <mat-form-field>
+                  <mat-label>mood</mat-label>
+                  <mat-select [(value)]="selectedMood" formControlName="mood" required>
+                      <mat-option *ngFor="let mood of moods" [value]="mood">
+                          {{mood}}
+                      </mat-option>
+                  </mat-select>
+              </mat-form-field><br>
+              <mat-form-field>
+                <mat-label>genre</mat-label>
+                <mat-select [(value)]="selectedGenre" formControlName="genre" required>
+                    <mat-option *ngFor="let genre of genres" [value]="genre">
+                        {{genre}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field><br>
+
+          <button [disabled]="addSongFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="primary">add song</button>
+      </form>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              make admin
+            </mat-panel-title>
+            <mat-panel-description>
+              you can grant someone admin rights
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+            <form [formGroup]="makeAdminFormGroup" (ngSubmit)="onSubmitMakeAdmin()">
+                <mat-form-field>
+                    <mat-label>listener mail</mat-label>
+                    <input name="email" formControlName="email" matInput placeholder="email" required>
+                </mat-form-field><br>
+                <button [disabled]="makeAdminFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="primary">make admin</button>
+              </form>
+        </mat-expansion-panel>
+
+        <mat-expansion-panel hideToggle>
+          <mat-expansion-panel-header>
+            <mat-panel-title>
+              unmake admin
+            </mat-panel-title>
+            <mat-panel-description>
+              take admin rights from a user
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+            <form [formGroup]="unmakeAdminFormGroup" (ngSubmit)="unmakeAdminModal()">
+                <mat-form-field>
+                    <mat-label>listener mail</mat-label>
+                    <input name="email" formControlName="email" matInput placeholder="email" required>
+                </mat-form-field><br>
+                <button [disabled]="unmakeAdminFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="warn">unmake admin</button>
+              </form>
+        </mat-expansion-panel>
+
+
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          add mood
+        </mat-panel-title>
+        <mat-panel-description>
+          new mood for listeners
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <form [formGroup]="addMoodFormGroup" (ngSubmit)="onSubmitAddMood()">
+            <mat-form-field>
+                <mat-label>mood name</mat-label>
+                <input name="name" formControlName="name" matInput placeholder="name" required>
+            </mat-form-field><br>
+            <mat-form-field>
+              <mat-label>mood cover image</mat-label>
+              <input name="image" formControlName="image" matInput placeholder="image" required>
+          </mat-form-field><br>
+            <button [disabled]="addMoodFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="primary">add mood</button>
+          </form>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          delete mood
+        </mat-panel-title>
+        <mat-panel-description>
+          get rid of a mood
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <form [formGroup]="deleteMoodFormGroup" (ngSubmit)="deleteMoodModal()" >
+            <mat-form-field>
+                <mat-label>mood name</mat-label>
+                <mat-select [(value)]="selectedMood" formControlName="name" required>
+                      <mat-option *ngFor="let mood of moods" [value]="mood">
+                          {{mood}}
+                      </mat-option>
+                  </mat-select>
+            </mat-form-field><br>
+            <button [disabled]="deleteMoodFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="warn">delete mood</button>
+          </form>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          delete listener
+        </mat-panel-title>
+        <mat-panel-description>
+          delete an account
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <form [formGroup]="deleteListenerFormGroup" (ngSubmit)="deleteListenerModal()">
+            <mat-form-field>
+                <mat-label>listener email</mat-label>
+                <input name="email" formControlName="email" matInput placeholder="email" required>
+            </mat-form-field><br>
+            <button [disabled]="deleteListenerFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="warn">delete account</button>
+          </form>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          delete song
+        </mat-panel-title>
+        <mat-panel-description>
+          remove a song from playlists
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <form [formGroup]="deleteSongFormGroup" (ngSubmit)="deleteSongModal()">
+            <mat-form-field>
+                <mat-label>song title</mat-label>
+                <input name="title" formControlName="title" matInput placeholder="title" required>
+            </mat-form-field><br>
+            <mat-form-field>
+              <mat-label>song artist</mat-label>
+              <input name="artist" formControlName="artist" matInput placeholder="artist" required>
+          </mat-form-field><br>
+            <button [disabled]="deleteSongFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="warn">delete song</button>
+          </form>
+    </mat-expansion-panel>
+    
+  </mat-accordion>
+  
+  </mat-drawer-container>
         
-        <button [disabled]="addSongFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="primary">add song</button>
-    </form>
+
+
+
+
 </div>

@@ -1,12 +1,16 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { Routes } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { HomepageComponent } from './homepage.component';
 import { MatAnchor, MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { ReactiveFormsModule } from '@angular/forms';
 import {MatCardModule} from '@angular/material/card';
+import { MoodCardComponent } from './mood-card/mood-card.component';
+import { MoodCardModule } from './mood-card/mood-card.module';
+import { MatSidenavModule } from '@angular/material/sidenav';
+import { MatIconModule } from '@angular/material/icon';
 
 const routes: Routes = [
   {
@@ -17,7 +21,8 @@ const routes: Routes = [
 
 @NgModule({
   declarations: [
-    HomepageComponent
+    HomepageComponent,
+    MoodCardComponent
   ],
   imports: [
     CommonModule,
@@ -25,7 +30,11 @@ const routes: Routes = [
     MatInputModule,
     ReactiveFormsModule,
     MatButtonModule,
-    MatCardModule
+    MatCardModule,
+    MoodCardModule,
+    RouterModule,
+    MatSidenavModule,
+    MatIconModule
   ]
 })
 export class HomepageModule { }

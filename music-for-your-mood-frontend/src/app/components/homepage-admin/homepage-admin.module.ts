@@ -8,6 +8,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatSelectModule } from '@angular/material/select';
+import {MatExpansionModule} from '@angular/material/expansion';
+import {MatSidenavModule} from '@angular/material/sidenav';
+import { MatIcon, MatIconModule } from '@angular/material/icon';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
 const routes: Routes = [
@@ -28,7 +32,12 @@ const routes: Routes = [
     ReactiveFormsModule,
     MatButtonModule,
     MatCardModule,
-    MatSelectModule
+    MatSelectModule,
+    MatExpansionModule,
+    MatButtonModule,
+    MatSidenavModule,
+    MatIconModule,
+    MatSnackBarModule
   ],
   exports: [
     HomepageAdminComponent

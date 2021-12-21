@@ -1,5 +1,5 @@
-<img src="https://musicforyourmoodca.files.wordpress.com/2020/05/music-for-your-mood-logo.png" style="width: 300px; height: 300px;">
-<h2>Login</h2>
+<img id="login-image" src="https://musicforyourmoodca.files.wordpress.com/2020/05/music-for-your-mood-logo.png" style="width: 300px; height: 300px;">
+<h2 id="login">Login</h2>
 <form [formGroup]="loginFormGroup" (ngSubmit)="onSubmit($event)">
     <mat-form-field>
         <mat-label>Enter email</mat-label>
@@ -11,11 +11,11 @@
         <mat-error *ngIf="loginFormGroup.controls['password'].hasError('pError')">{{passwordError}}</mat-error>
     </mat-form-field><br>
     
-    <button type="submit" mat-raised-button color="primary">Login</button>
+    <button id="login-button" type="submit" mat-raised-button color="primary">Login</button>
+    <div>
+        <mat-label>Don't have an account?</mat-label>
+        <a routerLink="register"><button id="register-button" type="button" mat-raised-button color="primary" (click)="goToSignUp()">Sign up</button></a>
+    </div>
 </form>
-<div>
-    <mat-label>Don't have an account?</mat-label>
-    
-    <a routerLink="register"><button type="button" mat-raised-button color="primary" (click)="goToSignUp()">Sign up</button></a>
-</div>
+
 

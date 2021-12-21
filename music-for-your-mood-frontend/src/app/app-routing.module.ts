@@ -3,8 +3,10 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomepageAdminComponent } from './components/homepage-admin/homepage-admin.component';
 import { HomepageAdminModule } from './components/homepage-admin/homepage-admin.module';
 import { HomepageComponent } from './components/homepage/homepage.component';
+import { MoodCardComponent } from './components/homepage/mood-card/mood-card.component';
 import { LoginComponent } from './components/login/login.component';
 import { RegisterComponent } from './components/register/register.component';
+import { SongsComponent } from './components/songs/songs.component';
 import { SharedModule } from './shared/shared.module';
 
 const routes: Routes = [
@@ -23,6 +25,10 @@ const routes: Routes = [
   {
     path: 'homepage-admin',
     component: HomepageAdminComponent
+  },
+  {
+    path: 'homepage/songs/:id',
+    component: SongsComponent
   },
   {
     path: '**',

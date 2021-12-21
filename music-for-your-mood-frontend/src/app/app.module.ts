@@ -15,10 +15,20 @@ import { RegisterModule } from './components/register/register.module';
 import { HomepageAdminComponent } from './components/homepage-admin/homepage-admin.component';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { MatSelectModule } from '@angular/material/select';
+import { SongsComponent } from './components/songs/songs.component';
+import { PopDialogComponent } from './components/pop-dialog/pop-dialog.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatTableModule } from '@angular/material/table';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatButtonModule } from '@angular/material/button';
+
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SongsComponent,
+    PopDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -27,7 +37,12 @@ import { MatSelectModule } from '@angular/material/select';
     FormsModule,
     LoginModule,
     RegisterModule,
-    MatSelectModule
+    MatSelectModule,
+    MatSnackBarModule,
+    MatTableModule,
+    MatIconModule,
+    MatDialogModule,
+    MatButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]
