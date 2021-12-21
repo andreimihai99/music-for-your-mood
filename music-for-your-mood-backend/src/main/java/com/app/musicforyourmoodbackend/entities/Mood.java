@@ -18,8 +18,7 @@ public class Mood {
     @Column(name = "name")
     private String name;
 
-    @Column(name = "cover_image", columnDefinition = "TEXT")
-    @Lob
+    @Column(name = "cover_image")
     private String coverImage;
 
     public Mood() {}

@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.xml.ws.Response;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -81,6 +82,38 @@ public class ListenerController {
 
             return new ResponseEntity<>(_listener, HttpStatus.CREATED);
         } catch (Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @PutMapping("/make-admin")
+    public ResponseEntity<Listener> updateAdmin (@RequestBody Listener listener) {
+        try {
+            Listener listenerAdmin = listenerRepository.findByEmail(listener.getEmail());
+            listenerAdmin.setIsAdmin(true);
+            return new ResponseEntity<>(listenerRepository.save(listenerAdmin), HttpStatus.OK);
+        } catch(Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/unmake-admin")
+    public ResponseEntity<Listener> unmakeAdmin (@RequestBody Listener listener) {
+        try {
+            Listener listenerAdmin = listenerRepository.findByEmail(listener.getEmail());
+            listenerAdmin.setIsAdmin(false);
+            return new ResponseEntity<>(listenerRepository.save(listenerAdmin), HttpStatus.OK);
+        } catch(Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @DeleteMapping("/delete-listener/{id}")
+    public ResponseEntity<HttpStatus> deleteListener(@PathVariable("id") Long id) {
+        try {
+            listenerRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+        } catch(Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

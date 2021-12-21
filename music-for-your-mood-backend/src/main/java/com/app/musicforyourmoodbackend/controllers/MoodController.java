@@ -51,6 +51,20 @@ public class MoodController {
         }
     }
 
+    @GetMapping("/get-mood-name/{name}")
+    public ResponseEntity<Mood> getMoodByName(@PathVariable String name) {
+        try {
+            Optional<Mood> mood = Optional.ofNullable(moodRepository.findByName(name));
+            if(mood.isPresent()) {
+                return ResponseEntity.ok(mood.get());
+            } else
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+        catch(Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @PostMapping("/add-mood")
     public ResponseEntity<Mood> addMood(@RequestBody Mood mood) {
         try {
@@ -62,6 +76,16 @@ public class MoodController {
                     ));
             return ResponseEntity.ok(_mood);
 
+        } catch(Exception e) {
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @DeleteMapping("/delete-mood/{id}")
+    public ResponseEntity<HttpStatus> deleteMood(@PathVariable("id") Long id) {
+        try {
+            moodRepository.deleteById(id);
+            return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch(Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }

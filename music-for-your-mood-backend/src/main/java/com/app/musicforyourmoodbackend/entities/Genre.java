@@ -1,6 +1,7 @@
 package com.app.musicforyourmoodbackend.entities;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -21,7 +22,7 @@ public class Genre {
     public Genre() {}
 
     @JsonCreator
-    public Genre(Long id, String name) {
+    public Genre(@JsonProperty Long id,@JsonProperty String name) {
         this.id = id;
         this.name = name;
     }
