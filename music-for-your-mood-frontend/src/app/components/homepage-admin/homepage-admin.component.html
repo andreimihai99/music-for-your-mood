@@ -4,9 +4,9 @@
 <div class="main">
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-      <button mat-button color="primary">Sign out</button><br>
-      <button mat-raised-button color="primary">Something</button>
-     
+      <button class="drawer" mat-raised-button color="primary" style="width: 100%; margin-top: 5px;" (click)="seeSongs()">see songs</button><br>
+      <button class="drawer" mat-raised-button color="primary" style="width: 100%; margin-top: 5px;" (click)="seeUsers()">see users</button><br>
+      <button class="drawer" mat-button color="warn" style="width: 100%;" (click)="modalSignOut()">sign out</button>
     </mat-drawer>
   
     <div class="example-sidenav-content">
@@ -160,6 +160,29 @@
             </mat-form-field><br>
             <button [disabled]="deleteListenerFormGroup.status !== 'VALID'" type="submit" mat-raised-button color="warn">delete account</button>
           </form>
+    </mat-expansion-panel>
+
+    <mat-expansion-panel hideToggle>
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          update mood
+        </mat-panel-title>
+        <mat-panel-description>
+          update name for a mood
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+        <form [formGroup]="updateMoodFormGroup">
+            <mat-form-field>
+                <mat-label>mood current name</mat-label>
+                <input name="currentName" formControlName="currentName" matInput placeholder="currentName" required>
+            </mat-form-field><br>
+            <mat-form-field>
+              <mat-label>mood new name</mat-label>
+              <input name="newName" formControlName="newName" matInput placeholder="newName" required>
+            </mat-form-field><br>
+              <button type="submit" mat-raised-button color="warn" (click)="updateMoodName()">update name</button><br>
+            <mat-label>cover image cannot be updated</mat-label>
+        </form>
     </mat-expansion-panel>
 
     <mat-expansion-panel hideToggle>

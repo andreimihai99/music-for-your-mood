@@ -1,7 +1,7 @@
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Listener } from 'src/app/shared/data-types/listener';
 import { Mood } from 'src/app/shared/data-types/mood';
@@ -32,6 +32,9 @@ export class HomepageAdminComponent implements OnInit {
   listener?: Listener;
   deletedListener?: Listener;
   deletedSong?: Song;
+
+  updateMood?: Mood;
+  deleteSongs: Song[] = [];
 
   mood: Mood = new Mood();
 
@@ -70,6 +73,12 @@ export class HomepageAdminComponent implements OnInit {
     artist: ['', Validators.required]
   })
 
+  updateMoodFormGroup = this.formBuilder.group({
+    currentName: ['', Validators.required],
+    newName: ['', Validators.required],
+    coverImage: ['', Validators.required]
+  })
+
   constructor(private formBuilder: FormBuilder,
               private genreService: GenreService,
               private songService: SongService,
@@ -78,7 +87,8 @@ export class HomepageAdminComponent implements OnInit {
               private moodService: MoodService,
               private popDialogService: PopDialogService,
               private route: ActivatedRoute,
-              private snackBar: MatSnackBar) { }
+              private snackBar: MatSnackBar,
+              private router: Router) { }
 
   ngOnInit(): void {
     this.moodService.findAll().subscribe(
@@ -157,7 +167,19 @@ export class HomepageAdminComponent implements OnInit {
       this.moodService.findByName(this.deleteMoodFormGroup.value.name).subscribe(
         data => {
           this.mood = data;
+          console.log(this.mood);
           if(this.deleteMoodFormGroup.status === 'VALID') {
+            // this.songService.findAllByMoodId(this.mood.id).subscribe(
+            //   data => {
+            //     this.deleteSongs = data;
+            //     console.log(this.deleteSongs);
+            //     for(let song of this.deleteSongs) {
+            //       //console.log(song.id);
+            //       this.songService.deleteSong(song.id);
+            //       console.log("deleted");
+            //     }
+            //   }
+            // )
             this.moodService.deleteMood(this.mood.id).subscribe(
               data => {
                 this.deleteMoodFormGroup.reset();
@@ -251,10 +273,36 @@ export class HomepageAdminComponent implements OnInit {
 
   unmakeAdminModal() {
     this.popDialogService.openModal("Unmake admin", "Are you sure you want to take admin rights away from this listener?", () => {
-      this.onSubmitMakeAdmin();
+      this.onSubmitUnmakeAdmin();
     }, () => {
       null;
     });
+  }
+
+  updateMoodName(): void {
+    this.moodService.findByName(this.updateMoodFormGroup.value.currentName).subscribe(
+      data => {
+        this.updateMood = data;
+        this.moodService.changeMoodName(this.updateMoodFormGroup.value.newName, this.updateMood).subscribe(
+          data => {
+            this.openInSnackBar("Mood name changed", "Dismiss");
+          }
+        )
+      }
+    )
+  }
+
+  updateMoodImage(): void {
+    this.moodService.findByName(this.updateMoodFormGroup.value.currentName).subscribe(
+      data => {
+        this.updateMood = data;
+        this.moodService.changeMoodImage(this.updateMoodFormGroup.value.coverImage, this.updateMood).subscribe(
+          data => {
+            this.openInSnackBar("Mood image changed", "Dismiss");
+          }
+        )
+      }
+    )
   }
 
   openInSnackBar(message: string, action: string) {
@@ -263,6 +311,24 @@ export class HomepageAdminComponent implements OnInit {
     });
   }
 
-      
+  seeSongs(): void {
+    this.router.navigate(["all-songs"]);
+  }
+
+  seeUsers(): void {
+    this.router.navigate(["all-users"]);
+  }
+
+  signOut(): void {
+    this.router.navigate(["login"]);
+  }
+
+  modalSignOut(): void {
+    this.popDialogService.openModal("Sign out", "Are you sure you want to sign out?", () => {
+      this.signOut();
+    }, () => {
+      null;
+    });
+  }
     
 }

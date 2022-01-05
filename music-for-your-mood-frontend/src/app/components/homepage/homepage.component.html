@@ -6,9 +6,8 @@
 <div class="main">
   <mat-drawer-container class="example-container" autosize>
     <mat-drawer #drawer class="example-sidenav" mode="side">
-      <button mat-button color="primary">Sign out</button><br>
-      <button mat-raised-button color="primary">Something</button>
-     
+      <button class="allsongs" mat-raised-button color="primary" (click)="seeAllSongs()">see all songs</button><br>
+      <button class="signout" mat-button color="warn" (click)="modalSignOut()">sign out</button>
     </mat-drawer>
   
     <div class="example-sidenav-content">

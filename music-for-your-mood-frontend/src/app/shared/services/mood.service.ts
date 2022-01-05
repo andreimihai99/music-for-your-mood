@@ -37,6 +37,16 @@ export class MoodService {
     return this.http.post<Mood>(path, mood);
   } 
 
+  public changeMoodName(name: string, mood: Mood): Observable<Mood> {
+    const path = `${this.ENVIRONMENT}/moods/update-mood-name/${name}`;
+    return this.http.put<Mood>(path, mood);
+  }
+
+  public changeMoodImage(coverImage: string, mood: Mood): Observable<Mood> {
+    const path = `${this.ENVIRONMENT}/moods/update-mood-image/${coverImage}`;
+    return this.http.put<Mood>(path, mood);
+  }
+
   public deleteMood(id: number): Observable<any> {
     const path = `${this.ENVIRONMENT}/moods/delete-mood/${id}`;
     return this.http.delete<Mood>(path);

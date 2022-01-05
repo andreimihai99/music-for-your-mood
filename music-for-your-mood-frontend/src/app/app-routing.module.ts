@@ -1,5 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AllSongsComponent } from './components/all-songs/all-songs.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 import { HomepageAdminComponent } from './components/homepage-admin/homepage-admin.component';
 import { HomepageAdminModule } from './components/homepage-admin/homepage-admin.module';
 import { HomepageComponent } from './components/homepage/homepage.component';
@@ -29,6 +31,14 @@ const routes: Routes = [
   {
     path: 'homepage/songs/:id',
     component: SongsComponent
+  },
+  {
+    path: 'all-songs',
+    component: AllSongsComponent
+  },
+  {
+    path: 'all-users',
+    component: AllUsersComponent
   },
   {
     path: '**',

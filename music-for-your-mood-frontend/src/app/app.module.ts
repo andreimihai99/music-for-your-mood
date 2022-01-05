@@ -22,13 +22,17 @@ import { MatTableModule } from '@angular/material/table';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { AllSongsComponent } from './components/all-songs/all-songs.component';
+import { AllUsersComponent } from './components/all-users/all-users.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SongsComponent,
-    PopDialogComponent
+    PopDialogComponent,
+    AllSongsComponent,
+    AllUsersComponent
   ],
   imports: [
     BrowserModule,
