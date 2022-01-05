@@ -90,4 +90,26 @@ public class MoodController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+    @PutMapping("/update-mood-name/{name}")
+    public ResponseEntity<Mood> updateMood(@PathVariable("name") String name, @RequestBody Mood mood) {
+        try {
+            Mood newMoodName = moodRepository.findByName(mood.getName());
+            newMoodName.setName(name);
+            return new ResponseEntity<>(moodRepository.save(newMoodName), HttpStatus.OK);
+        } catch(Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
+
+    @PutMapping("/update-mood-image/{coverImage}")
+    public ResponseEntity<Mood> updateCoverImage(@PathVariable("coverImage") String coverImage, @RequestBody Mood mood) {
+        try {
+            Mood newMoodName = moodRepository.findByName(mood.getName());
+            newMoodName.setCoverImage(coverImage);
+            return new ResponseEntity<>(moodRepository.save(newMoodName), HttpStatus.OK);
+        } catch(Exception e) {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+    }
 }
